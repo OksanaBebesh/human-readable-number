@@ -20,7 +20,7 @@ module.exports = function toReadable(number) {
         default:
             return "";
     }
-    return stringResult;
+    return stringResult.replaceAll("  ", " ").trim();
 };
 
 function combineTwoDigit(number) {
@@ -28,6 +28,8 @@ function combineTwoDigit(number) {
     let second = number % 10;
     return first === 1
         ? stringDigitAfterNine(number)
+        : !second
+        ? stringDigit(first)
         : stringDigit(first) + " " + returnNumberString(second);
 }
 
@@ -67,7 +69,7 @@ function stringDigitAfterNine(digitAfterNine) {
         case 12:
             return "twelve";
         case 13:
-            return "eleven";
+            return "thirteen";
         case 14:
             return "fourteen";
         case 15:
